@@ -1,0 +1,61 @@
+{
+  "name": "multer-oss",
+  "version": "0.0.1",
+  "description": "upload files to oss through multer directly",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf lib && mkdir lib && babel src -d lib",
+    "test": "npm run lint && npm run build && nyc mocha",
+    "lint": "eslint src/",
+    "prepublishOnly": "npm run build",
+    "cover": "npm run lint && nyc report --reporter=text-lcov | coveralls"
+  },
+  "pre-commit": "cover",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taozhi8833998/multer-oss.git"
+  },
+  "keywords": [
+    "multer",
+    "oss",
+    "nodejs"
+  ],
+  "author": "taozhi8833998 <taozhi8833998@163.com>",
+  "files": [
+    "index.js",
+    "lib/",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taozhi8833998/multer-oss/issues"
+  },
+  "homepage": "https://github.com/taozhi8833998/multer-oss#readme",
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "ali-oss": "^6.0.2"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-istanbul": "^5.1.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-strict": "^14.0.1",
+    "eslint-plugin-filenames": "^1.3.2",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "pre-commit": "^1.2.2"
+  }
+}
