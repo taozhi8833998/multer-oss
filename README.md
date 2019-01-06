@@ -17,7 +17,7 @@
 - support upload files to [oss](https://www.aliyun.com/product/oss)
 - support es7 features async and await
 
-## :: Install
+## :tada: Install
 
 ```bash
 npm install multer-oss-new
