@@ -20,7 +20,7 @@
 ## :: Install
 
 ```bash
-npm install multer-oss
+npm install multer-oss-new
 ```
 ## :rocket: Usage
 
@@ -77,6 +77,7 @@ const http = require('http')
 const multer = require('multer')
 const app = express()
 const server = http.createServer(app)
+const OSSStorage = require('multer-oss-new')
 const storage = new OSSStorage({
   oss: { // required
     region: 'oss-region',
