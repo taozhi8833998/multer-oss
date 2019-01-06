@@ -1,5 +1,5 @@
 {
-  "name": "multer-oss",
+  "name": "multer-oss-new",
   "version": "0.0.1",
   "description": "upload files to oss through multer directly",
   "main": "index.js",
