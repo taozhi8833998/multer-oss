@@ -75,9 +75,9 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const http = require('http')
 const multer = require('multer')
+const OSSStorage = require('multer-oss-new')
 const app = express()
 const server = http.createServer(app)
-const OSSStorage = require('multer-oss-new')
 const storage = new OSSStorage({
   oss: { // required
     region: 'oss-region',
