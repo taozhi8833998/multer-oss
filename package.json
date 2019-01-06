@@ -10,7 +10,7 @@
     "prepublishOnly": "npm run build",
     "cover": "npm run lint && nyc report --reporter=text-lcov | coveralls"
   },
-  "pre-commit": "cover",
+  "pre-commit": "test",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/taozhi8833998/multer-oss.git"
