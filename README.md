@@ -1,5 +1,6 @@
 # multer-oss
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ca77da4f464c44e18f3cf057d9fe24f5)](https://app.codacy.com/app/taozhi8833998/multer-oss?utm_source=github.com&utm_medium=referral&utm_content=taozhi8833998/multer-oss&utm_campaign=Badge_Grade_Dashboard)
 [![](https://img.shields.io/badge/Powered%20by-ganjiang-brightgreen.svg)](https://github.com/taozhi8833998/multer-oss)
 [![Build Status](https://travis-ci.org/taozhi8833998/multer-oss.svg?branch=master)](https://travis-ci.org/taozhi8833998/multer-oss)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/taozhi8833998/multer-oss/blob/master/LICENSE)
