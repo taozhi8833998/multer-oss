@@ -8,6 +8,7 @@
 [![NPM downloads](http://img.shields.io/npm/dm/multer-oss-new.svg?style=flat-square)](http://www.npmtrends.com/multer-oss-new)
 [![Coverage Status](https://img.shields.io/coveralls/github/taozhi8833998/multer-oss/master.svg)](https://coveralls.io/github/taozhi8833998/multer-oss?branch=master)
 [![Dependencies](https://img.shields.io/david/taozhi8833998/multer-oss.svg)](https://img.shields.io/david/taozhi8833998/multer-oss)
+[![Known Vulnerabilities](https://snyk.io/test/github/taozhi8833998/multer-oss/badge.svg?targetFile=package.json)](https://snyk.io/test/github/taozhi8833998/multer-oss?targetFile=package.json)
 [![issues](https://img.shields.io/github/issues/taozhi8833998/multer-oss.svg)](https://github.com/taozhi8833998/multer-oss/issues)
 
 **multer upload files to aliyun oss directly.**
