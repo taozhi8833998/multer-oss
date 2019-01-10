@@ -10,13 +10,12 @@
 [![Dependencies](https://img.shields.io/david/taozhi8833998/multer-oss.svg)](https://img.shields.io/david/taozhi8833998/multer-oss)
 [![issues](https://img.shields.io/github/issues/taozhi8833998/multer-oss.svg)](https://github.com/taozhi8833998/multer-oss/issues)
 
-
 **multer upload files to aliyun oss directly.**
 
 ## :star: Features
 
-- support upload files to [oss](https://www.aliyun.com/product/oss)
-- support es7 features async and await
+  - support upload files to [oss](https://www.aliyun.com/product/oss)
+  - support es7 features async and await
 
 ## :tada: Install
 
@@ -112,4 +111,3 @@ server.listen(8000, err => {
 ## License
 
 [MIT](LICENSE)
-
