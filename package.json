@@ -25,7 +25,8 @@
     "index.js",
     "lib/",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "yarn.lock"
   ],
   "license": "MIT",
   "bugs": {
