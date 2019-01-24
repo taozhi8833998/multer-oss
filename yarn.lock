@@ -177,9 +177,9 @@ ajv@^6.5.3, ajv@^6.5.5, ajv@^6.6.1:
     uri-js "^4.2.2"
 
 ali-oss@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.npmjs.org/ali-oss/-/ali-oss-6.0.2.tgz#0fce862819998db168e8f24fe3b20f4790e696ce"
-  integrity sha512-HMmlmab75/es5T0jFjqjt4pPwMkgEzUb/gqL0N4ADdr0JtYglXsNV0l/W6oxsHunRN49pStj85GVW442CkwHnA==
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/ali-oss/-/ali-oss-6.1.0.tgz#c5a62c42d9424a903781d0555962b087c71fa5fc"
+  integrity sha512-hTl6PsZcWptF7YDtTJMJuxsPwwTTgqxyR1QDKmZlHRN9E3d/ao5tk9v8EBFPdorroQL+Niahju4rGYd1N/71VQ==
   dependencies:
     address "^1.0.0"
     agentkeepalive "^3.4.1"
