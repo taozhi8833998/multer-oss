@@ -15,9 +15,9 @@
 
 ## :star: Features
 
-  - support upload files to [oss](https://www.aliyun.com/product/oss)
-  - support es7 features async and await
-  - support compressed by gzip and cache by default
+- support upload files to [oss](https://www.aliyun.com/product/oss)
+- support es7 features async and await
+- support compressed by gzip by default
 
 ## :tada: Install
 
@@ -31,7 +31,6 @@ npm install multer-oss-new
 ```javascript
 const OSSStorage = require('multer-oss-new')
 const zlib = require('zlib')
-
 const storage = new OSSStorage({
   oss: { // required
     region: 'oss-region',
