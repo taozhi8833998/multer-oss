@@ -17,6 +17,7 @@
 
   - support upload files to [oss](https://www.aliyun.com/product/oss)
   - support es7 features async and await
+  - support compressed by gzip and cache by default
 
 ## :tada: Install
 
@@ -28,6 +29,9 @@ npm install multer-oss-new
 ### init oss storage
 
 ```javascript
+const OSSStorage = require('multer-oss-new')
+const zlib = require('zlib')
+
 const storage = new OSSStorage({
   oss: { // required
     region: 'oss-region',
@@ -41,6 +45,19 @@ const storage = new OSSStorage({
   },
   filename: async (req, file, ossClient) => {
     return file.originalname // return file name, optional, file.originalname is default value
+  },
+  stream: async (req, file, ossClient) => {
+    return file.stream.pipe(zlib.createGzip()) // compress strem in gzip
+  },
+  options: async (req, file, ossClient) => { // read more https://www.npmjs.com/package/ali-oss#putstreamname-stream-options
+    return {
+      contentLength: file.size,
+      headers: {
+        'Content-Encoding': gzip,
+        'Content-Disposition': file.originalname,
+        'Expires': 3600000 // in ms
+      }
+    }
   }
 })
 ```
@@ -49,6 +66,9 @@ if you already have an oss client, you can pass it to opt directly
 
 ```javascript
 const OSS = require('ali-oss')
+const OSSStorage = require('multer-oss-new')
+const zlib = require('zlib')
+
 const ossClient = new OSS({
   region: 'oss-region',
   internal: false,
@@ -63,6 +83,18 @@ const storage = new OSSStorage({
   },
   filename: async (req, file, ossClient) => {
     return file.originalname // return file name, optional, file.originalname is default value
+  },
+  stream: async (req, file, ossClient) => {
+    return file.stream.pipe(zlib.createGzip()) // compress strem in gzip
+  },
+  options: async (req, file, ossClient) => { // read more https://www.npmjs.com/package/ali-oss#putstreamname-stream-options
+    return {
+      contentLength: file.size,
+      headers: {
+        'Content-Encoding': gzip,
+        'Expires': 3600000 // in ms
+      }
+    }
   }
 })
 ```
@@ -77,6 +109,7 @@ const express = require('express')
 const http = require('http')
 const multer = require('multer')
 const OSSStorage = require('multer-oss-new')
+const zlib = require('zlib')
 const app = express()
 const server = http.createServer(app)
 const storage = new OSSStorage({
@@ -92,6 +125,18 @@ const storage = new OSSStorage({
   },
   filename: async (req, file, ossClient) => {
     return file.originalname // return file name, optional, file.originalname is default value
+  },
+  stream: async (req, file, ossClient) => {
+    return file.stream.pipe(zlib.createGzip()) // compress strem in gzip
+  },
+  options: async (req, file, ossClient) => {
+    return {
+      contentLength: file.size,
+      headers: {
+        'Content-Encoding': gzip,
+        'Expires': 3600000 // in ms
+      }
+    }
   }
 })
 app.use(bodyParser.json())

@@ -3,10 +3,12 @@ const OSS = require('ali-oss')
 const fs = require('fs')
 const path = require('path')
 const { promisify } = require('util')
+const zlib = require('zlib')
 const OSSStorage = require('..')
 const done = require('./util')
 
 const readFile = promisify(fs.readFile)
+const unzip = promisify(zlib.unzip)
 const writeFile = promisify(fs.writeFile)
 const unlink = promisify(fs.unlink)
 const stat = promisify(fs.stat)
@@ -41,22 +43,36 @@ describe('multer oss storage', () => {
         },
         filename: async (req, file, oss) => {
           return file.originalname
+        },
+        stream: async (req, file, oss) => {
+          return file.stream.pipe(zlib.createGzip())
+        },
+        options: async (req, file, oss) => {
+          return {
+            contentLength: file.size,
+            headers: {
+              'Content-Encoding': 'gzip',
+              'Content-Disposition': file.originalname,
+              Expires: 3600000 // 1h cache
+            }
+          }
         }
       })
     })
     it('should upload successfully', done(async () => {
       const uploadFileName = 'upload.txt'
+      const writeStream = fs.createWriteStream(path.join(__dirname, uploadFileName))
       const ossStorage = new OSSStorage({
         client,
         destination: async (req, file, oss) => {
           oss.putStream = async (fileFullPath, fileStream) => {
-            fileStream.pipe(fs.createWriteStream(path.join(__dirname, fileFullPath)))
+            fileStream.pipe(writeStream)
           }
           return ''
         },
         filename: async (req, file, oss) => {
           return uploadFileName
-        }
+        },
       })
 
       // create mock file content
@@ -69,17 +85,20 @@ describe('multer oss storage', () => {
         originalname
       }
       await ossStorage._handleFile({}, file, () => {})
-      const uploadFilePath = path.join(__dirname, uploadFileName)
-      try {
-        const data = await readFile(uploadFilePath, {encoding: 'utf8'})
-        expect(data).to.be.eql(content)
-      } catch(err) {
-        throw err
-      }
-      await Promise.all([
-        unlink(filePath),
-        unlink(uploadFilePath)
-      ])
+      writeStream.on('finish', async () => {
+        const uploadFilePath = path.join(__dirname, uploadFileName)
+        try {
+          const gzipBuffer = await readFile(uploadFilePath)
+          const data = await unzip(gzipBuffer)
+          expect(data.toString()).to.be.eql(content)
+          await Promise.all([
+            unlink(filePath),
+            unlink(uploadFilePath)
+          ])
+        } catch (err) {
+          throw err
+        }
+      })
     }))
     it('should throw error when upload', done(async () => {
       const ossStorage = new OSSStorage({
@@ -91,7 +110,7 @@ describe('multer oss storage', () => {
           return ''
         }
       })
-      await ossStorage._handleFile({}, { originalname: 'local.txt' }, err => expect(err).to.be.equal('Error: upload error'))
+      await ossStorage._handleFile({}, { originalname: 'local.txt', stream: fs.createReadStream(path.join(__dirname, 'util.js')) }, err => expect(err).to.be.equal('Error: upload error'))
     }))
     it('should remove uploaded file', done(async () => {
       const ossStorage = new OSSStorage({
@@ -129,7 +148,7 @@ describe('multer oss storage', () => {
           return file.originalname
         }
       })
-      await ossStorage._removeFile({}, { originalname: 'local.txt' }, err => expect(err).to.be.equal('Error: remove error'))
+      await ossStorage._removeFile({}, { originalname: 'local.txt', stream: fs.createReadStream(path.join(__dirname, 'util.js')) }, err => expect(err).to.be.equal('Error: remove error'))
     }))
   })
 })
