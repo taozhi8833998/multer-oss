@@ -31,9 +31,8 @@ class OSSStorage {
     return {
       contentLength : file.size,
       headers       : {
-        'Content-Encoding'    : 'gzip',
-        'Content-Disposition' : file.originalname,
-        Expires               : 3600000,
+        'Content-Encoding' : 'gzip',
+        Expires            : 3600000,
       },
     }
   }
