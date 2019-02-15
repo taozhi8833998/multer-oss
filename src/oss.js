@@ -9,7 +9,6 @@ class OSSStorage {
     if (!oss && !client) throw new Error('oss info or client are required to set oss storage')
     this.destination = destination && typeof destination === 'function' ? destination : this.DEFAULT_DESTINATION
     this.filename = filename && typeof filename === 'function' ? filename : this.DEFAULT_FILENAME
-    if (client && !(client instanceof OSS)) throw new Error('the client option is not a valid oss client')
     this.options = options && typeof options === 'function' ? options : this.DEFAULT_OPTIONS
     this.stream = stream && typeof stream === 'function' ? stream : this.DEFAULT_FILESTREAM
     this.oss = client || new OSS(oss)

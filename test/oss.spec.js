@@ -26,10 +26,6 @@ describe('multer oss storage', () => {
     it('should init failed', () => {
       expect(() => new OSSStorage()).to.throw('opt could not be empty')
       expect(() => new OSSStorage({})).to.throw('oss info or client are required to set oss storage')
-
-      expect(() => new OSSStorage({
-        client: {}
-      })).to.throw('the client option is not a valid oss client')
     })
     it('should init successfully', () => {
       new OSSStorage({ client })
