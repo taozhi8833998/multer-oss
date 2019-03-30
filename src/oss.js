@@ -60,13 +60,14 @@ class OSSStorage {
     return gzip(imageMinBuffer)
   }
 
-  DEFAULT_OPTIONS() {
+  DEFAULT_OPTIONS(req, file) {
     return {
       // contentLength : file.size,
       headers : {
-        'Cache-Control'    : 'max-age=3600000',
-        'Content-Encoding' : 'gzip',
-        Expires            : 3600000,
+        'Cache-Control'       : 'max-age=3600000',
+        'Content-Disposition' : file.originalname,
+        'Content-Encoding'    : 'gzip',
+        Expires               : 3600000,
       },
     }
   }
