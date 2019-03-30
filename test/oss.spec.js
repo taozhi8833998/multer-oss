@@ -61,7 +61,7 @@ describe('multer oss storage', () => {
       const ossStorage = new OSSStorage({
         client,
         destination: async (req, file, oss) => {
-          oss.putStream = async (fileFullPath, fileStream) => {
+          oss.put = async (fileFullPath, fileStream) => {
             fileStream.pipe(writeStream)
           }
           return ''
@@ -96,11 +96,41 @@ describe('multer oss storage', () => {
         }
       })
     }))
+    it('should upload images successfully', done(async () => {
+      const uploadFileName = 'upload.png'
+      const uploadFilePath = path.join(__dirname, uploadFileName)
+      const ossStorage = new OSSStorage({
+        client,
+        destination: async (req, file, oss) => {
+          oss.put = (fileFullPath, fileStream) => {
+            return writeFile(fileFullPath, fileStream)
+          }
+          return __dirname
+        },
+        filename: async (req, file, oss) => {
+          return uploadFileName
+        },
+      })
+
+      const originalname = 'local.png'
+      const filePath = path.join(__dirname, originalname)
+      const file = {
+        stream: fs.createReadStream(filePath),
+        originalname
+      }
+      await ossStorage._handleFile({}, file, () => { })
+      const [gzipBuffer, originBuffer] = await Promise.all([
+        readFile(uploadFilePath),
+        readFile(filePath)
+      ])
+      expect(gzipBuffer.length < originBuffer.length).to.equal(true)
+      await unlink(uploadFilePath)
+    }))
     it('should throw error when upload', done(async () => {
       const ossStorage = new OSSStorage({
         client,
         destination: async (req, file, oss) => {
-          oss.putStream = async (fileFullPath, fileStream) => {
+          oss.put = async (fileFullPath, fileStream) => {
             throw new Error('upload error')
           }
           return ''
@@ -113,7 +143,7 @@ describe('multer oss storage', () => {
         client,
         destination: async (req, file, oss) => {
           oss.delete = async (fileFullPath, fileStream) => unlink(path.join(__dirname, fileFullPath))
-          oss.putStream = async (fileFullPath, fileStream) => {}
+          oss.put = async (fileFullPath, fileStream) => {}
           return ''
         }
       })

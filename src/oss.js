@@ -1,6 +1,14 @@
 import OSS from 'ali-oss'
+import concat from 'concat-stream'
+import imagemin from 'imagemin'
+import imageminJpegtran from 'imagemin-jpegtran'
+import imageminPngquant from 'imagemin-pngquant'
 import path from 'path'
+import { promisify } from 'util'
 import zlib from 'zlib'
+
+const gzip = promisify(zlib.gzip.bind(zlib))
+const IMAGE_REGEX = /(.*)\.(jpg|jpeg|png)$/
 
 class OSSStorage {
   constructor(opt) {
@@ -14,6 +22,11 @@ class OSSStorage {
     this.oss = client || new OSS(oss)
   }
 
+  couldMin(file) {
+    // current only support jpg, jpeg, and png min
+    return IMAGE_REGEX.test(file.originalname)
+  }
+
   DEFAULT_DESTINATION() {
     return ''
   }
@@ -22,14 +35,36 @@ class OSSStorage {
     return file.originalname
   }
 
-  DEFAULT_FILESTREAM(req, file) {
-    return file.stream.pipe(zlib.createGzip())
+  async DEFAULT_FILESTREAM(req, file) {
+    const isImage = this.couldMin(file)
+    if (!isImage) return file.stream.pipe(zlib.createGzip())
+    let resolveOut = null
+    let rejectOut = null
+    const promise = new Promise((resolve, reject) => {
+      resolveOut = resolve
+      rejectOut = reject
+    })
+    file.stream.pipe(concat({ encoding: 'buffer' }, resolveOut))
+    file.stream.on('error', rejectOut)
+    const imageBuffer = await promise
+    const pngMinQuality = 0.65
+    const pngMaxQuality = 0.8
+    const imageMinBuffer = await imagemin.buffer(imageBuffer, {
+      plugins : [
+        imageminJpegtran(),
+        imageminPngquant({
+          quality : [pngMinQuality, pngMaxQuality],
+        }),
+      ],
+    })
+    return gzip(imageMinBuffer)
   }
 
-  DEFAULT_OPTIONS(req, file) {
+  DEFAULT_OPTIONS() {
     return {
-      contentLength : file.size,
-      headers       : {
+      // contentLength : file.size,
+      headers : {
+        'Cache-Control'    : 'max-age=3600000',
         'Content-Encoding' : 'gzip',
         Expires            : 3600000,
       },
@@ -47,8 +82,8 @@ class OSSStorage {
 
   async _handleFile(req, file, callback) {
     try {
-      const [filePath, fileName, stream, options] = await this.getFileInfo(req, file)
-      const result = await this.oss.putStream(path.join(filePath, fileName), stream, options)
+      const [filePath, fileName, bufferData, options] = await this.getFileInfo(req, file)
+      const result = await this.oss.put(path.join(filePath, fileName), bufferData, options)
       return callback(null, result)
     } catch(err) {
       return callback(err.toString())

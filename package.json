@@ -1,6 +1,6 @@
 {
   "name": "multer-oss-new",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "upload files to oss through multer directly",
   "main": "index.js",
   "scripts": {
@@ -37,7 +37,11 @@
     "node": ">=8"
   },
   "dependencies": {
-    "ali-oss": "^6.1.0"
+    "ali-oss": "^6.1.0",
+    "concat-stream": "^2.0.0",
+    "imagemin": "^6.1.0",
+    "imagemin-jpegtran": "^6.0.0",
+    "imagemin-pngquant": "^7.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
