@@ -16,6 +16,7 @@
 ## :star: Features
 
 - support upload files to [oss](https://www.aliyun.com/product/oss)
+- support reduce *jpeg*, *jpg* and *png* size automatically
 - support es7 features async and await
 - support compressed by gzip by default
 
