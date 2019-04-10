@@ -200,9 +200,9 @@ ajv@^6.5.5, ajv@^6.9.1:
     uri-js "^4.2.2"
 
 ali-oss@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.npmjs.org/ali-oss/-/ali-oss-6.1.0.tgz#c5a62c42d9424a903781d0555962b087c71fa5fc"
-  integrity sha512-hTl6PsZcWptF7YDtTJMJuxsPwwTTgqxyR1QDKmZlHRN9E3d/ao5tk9v8EBFPdorroQL+Niahju4rGYd1N/71VQ==
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/ali-oss/-/ali-oss-6.1.1.tgz#1a310a27a6070571a493e73a015a82656217e0df"
+  integrity sha512-+BKZlX/+aPjFF8al0fS5j93ynWlKy779p/i1nVxElUjyQA457ccbhoQTUKL6cbr8EMetIAUHnhS9XTI4RgW1PA==
   dependencies:
     address "^1.0.0"
     agentkeepalive "^3.4.1"
@@ -225,7 +225,7 @@ ali-oss@^6.1.0:
     sdk-base "^2.0.1"
     stream-http "2.8.2"
     stream-wormhole "^1.0.4"
-    urllib "^2.17.1"
+    urllib "^2.33.1"
     utility "^1.8.0"
     xml2js "^0.4.16"
 
@@ -6177,9 +6177,9 @@ url-to-options@^1.0.1:
   resolved "https://registry.npmjs.org/url-to-options/-/url-to-options-1.0.1.tgz#1505a03a289a48cbd7a434efbaeec5055f5633a9"
   integrity sha1-FQWgOiiaSMvXpDTvuu7FBV9WM6k=
 
-urllib@^2.17.1:
+urllib@^2.33.1:
   version "2.33.2"
-  resolved "https://registry.npmjs.org/urllib/-/urllib-2.33.2.tgz#f74fd3c11a051567ede375ca16236a8e304df26a"
+  resolved "https://registry.yarnpkg.com/urllib/-/urllib-2.33.2.tgz#f74fd3c11a051567ede375ca16236a8e304df26a"
   integrity sha512-WDgapoRYqQHjaOebJrNGGnAfjOG+lrXLMfqe+MdYybsOWyaDpoPxDbgUZFopC7Bl2DSPszMgXuvGaePQzVz7Yg==
   dependencies:
     any-promise "^1.3.0"
