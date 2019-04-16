@@ -56,6 +56,7 @@ const storage = new OSSStorage({
   },
   options: async (req, file, ossClient) => { // read more https://www.npmjs.com/package/ali-oss#putstreamname-stream-options
     return {
+      contentLength: file.size,
       headers: {
         'Content-Encoding': gzip, // if your stream is not in gzip format, please overriden this
         'Content-Disposition': file.originalname,
