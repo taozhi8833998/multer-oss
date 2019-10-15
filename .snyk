@@ -8,3 +8,7 @@ patch:
         patched: '2019-10-03T22:06:13.853Z'
     - ali-oss > urllib > proxy-agent > pac-proxy-agent > https-proxy-agent:
         patched: '2019-10-03T22:06:13.853Z'
+    - snyk > proxy-agent > https-proxy-agent:
+        patched: '2019-10-12T06:27:09.180Z'
+    - snyk > proxy-agent > pac-proxy-agent > https-proxy-agent:
+        patched: '2019-10-12T06:27:09.180Z'
