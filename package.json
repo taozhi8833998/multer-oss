@@ -51,7 +51,7 @@
     "@types/mocha": "^5.2.5",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-plugin-istanbul": "^5.1.0",
+    "babel-plugin-istanbul": "^6.0.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
