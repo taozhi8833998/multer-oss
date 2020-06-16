@@ -481,9 +481,9 @@ ajv@^6.10.0, ajv@^6.5.5, ajv@^6.9.1:
     uri-js "^4.2.2"
 
 ali-oss@^6.1.0:
-  version "6.5.1"
-  resolved "https://registry.yarnpkg.com/ali-oss/-/ali-oss-6.5.1.tgz#e1461e9e4d4f6a01686cd94e4617350702576f2b"
-  integrity sha512-dnKL35PyotYfS0+Dcll1DKyQy7u+f5mOI2uBQ3Ndp1+j/gzE0y104QsCEyeXbMaNNZm+1WL8NL4KEnOMbzwYfQ==
+  version "6.9.1"
+  resolved "https://registry.yarnpkg.com/ali-oss/-/ali-oss-6.9.1.tgz#769cd52a488b080b1f4192fba205fc141816d4f8"
+  integrity sha512-9l7Deeg/S4Q/sMUYawkqvs3wmV6/VCQmqj3VpV0PZvV8oJKmTK2pyWDv7+6agfs15YmyzUq/c/n0itU5xNEDCA==
   dependencies:
     address "^1.0.0"
     agentkeepalive "^3.4.1"
@@ -498,11 +498,13 @@ ali-oss@^6.1.0:
     get-ready "^1.0.0"
     humanize-ms "^1.2.0"
     is-type-of "^1.0.0"
+    js-base64 "^2.5.2"
     jstoxml "^0.2.3"
     merge-descriptors "^1.0.1"
-    mime "^1.3.4"
+    mime "^2.4.5"
     mz-modules "^2.1.0"
     platform "^1.3.1"
+    pump "^3.0.0"
     sdk-base "^2.0.1"
     stream-http "2.8.2"
     stream-wormhole "^1.0.4"
@@ -4411,6 +4413,11 @@ jpegtran-bin@^4.0.0:
     bin-wrapper "^4.0.0"
     logalot "^2.0.0"
 
+js-base64@^2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.5.2.tgz#313b6274dda718f714d00b3330bbae6e38e90209"
+  integrity sha512-Vg8czh0Q7sFBSUMWWArX/miJeBWYBPpdU/3M/DKSaekLMqrqVPaedp+5mZhie/r0lgrcaYBfwXatEew6gwgiQQ==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -4902,10 +4909,10 @@ mime-types@^2.1.12, mime-types@~2.1.19:
   dependencies:
     mime-db "~1.38.0"
 
-mime@^1.3.4:
-  version "1.6.0"
-  resolved "https://registry.npmjs.org/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
-  integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
+mime@^2.4.5:
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/mime/-/mime-2.4.6.tgz#e5b407c90db442f2beb5b162373d07b69affa4d1"
+  integrity sha512-RZKhC3EmpBchfTGBVb8fb+RL2cWyw/32lshnsETttkBAyAUXSGHxbEJWWRXc751DrIxG1q04b8QwMbAwkRPpUA==
 
 mimic-fn@^1.0.0:
   version "1.2.0"
