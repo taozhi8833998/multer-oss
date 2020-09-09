@@ -43,7 +43,7 @@
     "concat-stream": "^2.0.0",
     "imagemin": "^7.0.0",
     "imagemin-jpegtran": "^6.0.0",
-    "imagemin-pngquant": "^8.0.0",
+    "imagemin-pngquant": "^9.0.1",
     "snyk": "^1.290.1"
   },
   "devDependencies": {
